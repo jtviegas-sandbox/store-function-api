@@ -1,0 +1,9 @@
+export STAGE=prod
+export ENV=prod
+#DB_ENDPOINT=
+export DB_API_REGION=$REGION
+export ENTITIES=elements,items
+export DB_API_ACCESS_KEY_ID=xyzsdfgtrew
+export DB_API_ACCESS_KEY=fjsjgiutehgk
+export OWNER_ACCOUNT=xpto.proj
+

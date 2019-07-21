@@ -1,0 +1,13 @@
+PROJ=store-function-api
+
+# have to export this one as tenant.include depends on it
+export REGION=eu-west-1
+
+DB_API_VERSION="2012-08-10"
+DEFAULT_ROLE_POLICY=role_assuming.policy
+DYNDB_READ_ACTIONS="dynamodb:BatchGetItem,dynamodb:ConditionCheckItem,dynamodb:ListTables,dynamodb:Scan,dynamodb:ListTagsOfResource,dynamodb:Query,dynamodb:DescribeStream,dynamodb:DescribeTimeToLive,dynamodb:ListStreams,dynamodb:DescribeGlobalTableSettings,dynamodb:DescribeReservedCapacityOfferings,dynamodb:DescribeTable,dynamodb:GetShardIterator,dynamodb:DescribeGlobalTable,dynamodb:DescribeReservedCapacity,dynamodb:GetItem,dynamodb:DescribeContinuousBackups,dynamodb:DescribeBackup,dynamodb:DescribeLimits,dynamodb:GetRecords"
+LOGGING_ACTIONS="logs:*"
+
+FUNCTION_BUCKET_SUFFIX="functions.${PROJ}"
+API_URL_FILE=api.url
+TENANT=split4ever
