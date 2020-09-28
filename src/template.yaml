@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: entities backend function (reads from DynamoDB) with a RESTful API endpoint using Amazon API Gateway.
+Resources:
+  entitiesEndpoint:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs8.10
+      CodeUri: .
+      FunctionName: entities
+      Description: entities backend function (reads from DynamoDB) with a RESTful API endpoint using Amazon API Gateway.
+      MemorySize: 512
+      Timeout: 10
+      Role: arn:aws:iam::692391178777:role/split4ever_store_function_role
+      Environment:
+        Variables:
+          TENANT: split4ever
+          STAGE: prod
+          ENV: prod
+          DB_API_REGION: eu-west-1
+          ENTITIES: items
+          DB_API_ACCESS_KEY_ID: AKIAI43WA53FU4BSKBEQ
+          DB_API_ACCESS_KEY: yBfISgVVror1NgmZaR3xxMQyh9pUXv3bH5pE8tSn
+          OWNER_ACCOUNT: split4ever.proj
+      Events:
+        getCollection:
+          Type: Api
+          Properties:
+            Path: /entities/{entity}
+            Method: GET
+        getSingular:
+          Type: Api
+          Properties:
+            Path: /entities/{entity}/{id}
+            Method: GET
+Outputs:
+    entitiesApi:
+      Description: "API Gateway endpoint URL for Prod stage for entities function"
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/"

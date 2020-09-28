@@ -3,7 +3,9 @@
 this_folder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 parent_folder=$(dirname $this_folder)
 
-. ${this_folder}/lib
+curl -XGET https://raw.githubusercontent.com/jtviegas/script-utils/master/bash/aws.sh -o "${this_folder}"/aws.sh
+
+. ${this_folder}/aws.sh
 . ${this_folder}/include
 if [[ -z $TENANT ]] ; then err "no TENANT defined" && exit 1; fi
 
@@ -15,7 +17,6 @@ LOGGING_POLICY="${TENANT}_logging_policy"
 FUNCTION_BUCKET="${TENANT}.${FUNCTION_BUCKET_SUFFIX}"
 SRC_DIR=${parent_folder}/src
 API_STACK="${TENANT}-${PROJ}"
-
 
 __r=0
 

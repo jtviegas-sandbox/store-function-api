@@ -61,3 +61,5 @@ typings/
 .next
 .idea
 devops/split4ever.include
+.DS_Store
+.aws-sam

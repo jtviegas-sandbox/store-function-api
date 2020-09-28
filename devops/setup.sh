@@ -3,7 +3,9 @@
 this_folder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 parent_folder=$(dirname $this_folder)
 
-. ${this_folder}/lib
+curl -XGET https://raw.githubusercontent.com/jtviegas/script-utils/master/bash/aws.sh -o "${this_folder}"/aws.sh
+
+. ${this_folder}/aws.sh
 . ${this_folder}/include
 
 if [[ -z $TENANT ]] ; then err "no TENANT defined" && exit 1; fi
